@@ -14,6 +14,7 @@ class UserInfoDataModel {
     this.coverImageUrl,
     this.bio,
     this.deviceTokens,
+    this.role,
   });
 
   final String uid;
@@ -25,6 +26,7 @@ class UserInfoDataModel {
   final String? coverImageUrl;
   final String? bio;
   final List<String>? deviceTokens;
+  final String? role;
 
   factory UserInfoDataModel.fromJson(Map<String, dynamic> json) =>
       _$UserInfoDataModelFromJson(json);

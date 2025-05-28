@@ -16,6 +16,7 @@ abstract interface class LoginUserCase {
 
   Future<bool> loginWithGoogle();
   Future<bool> loginWithApple();
+  Future<void> signOut();
 }
 
 // 2- Implement the class
@@ -68,6 +69,12 @@ class _LoginUserCase implements LoginUserCase {
     // if (token != null) {
     //   await _userRepository.updateUserDeviceToken(user.uid, token);
     // }
+  }
+
+  
+  @override
+  Future<void> signOut() async {
+ await _authRepository.signOut();
   }
 }
 

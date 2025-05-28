@@ -11,6 +11,7 @@ class CommonPageScaffold extends StatelessWidget {
     this.bottomNavigationBar,
     this.actions,
     this.leading,
+    this.showAppBar = true,
   });
 
   final String title;
@@ -21,18 +22,20 @@ class CommonPageScaffold extends StatelessWidget {
   final Widget? leading;
   final List<Widget>? actions;
   final BottomNavigationBar? bottomNavigationBar;
+  final bool showAppBar;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: const Color.fromARGB(221, 31, 31, 31),
       key: key,
-      appBar: AppBar(
+      appBar: showAppBar ?  AppBar(
         leading: leading,
         centerTitle: centerTitle,
         automaticallyImplyLeading: automaticallyImplyLeading,
         title: Text(title),
         actions: actions,
-      ),
+      ) : null,
       body: SafeArea(
         child: withPadding
             ? Padding(

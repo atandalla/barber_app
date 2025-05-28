@@ -20,6 +20,7 @@ UserInfoDataModel _$UserInfoDataModelFromJson(Map<String, dynamic> json) =>
           (json['deviceTokens'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList(),
+      role: json['role'] as String?,
     );
 
 Map<String, dynamic> _$UserInfoDataModelToJson(UserInfoDataModel instance) =>
@@ -33,4 +34,5 @@ Map<String, dynamic> _$UserInfoDataModelToJson(UserInfoDataModel instance) =>
       'coverImageUrl': instance.coverImageUrl,
       'bio': instance.bio,
       'deviceTokens': instance.deviceTokens,
+      'role': instance.role,
     };

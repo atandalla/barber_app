@@ -1,4 +1,3 @@
-
 import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,9 +7,7 @@ import '../interface/user_interface.dart';
 import '../models/userinfo.dart';
 
 class _UserRemoteDataSource implements UserRepository {
-  const _UserRemoteDataSource(
-    this.databaseDataSource,
-  );
+  const _UserRemoteDataSource(this.databaseDataSource);
 
   final FirebaseFirestore databaseDataSource;
 
@@ -20,10 +17,7 @@ class _UserRemoteDataSource implements UserRepository {
       return databaseDataSource
           .collection(CollectionsName.users.name)
           .doc(user.uid)
-          .set(
-            user.toJson(),
-            SetOptions(merge: true),
-          );
+          .set(user.toJson(), SetOptions(merge: true));
     } on FirebaseException catch (e) {
       throw AppFirebaseException(e.code, e.message ?? 'An error occurred');
     } catch (e) {
@@ -38,39 +32,21 @@ class _UserRemoteDataSource implements UserRepository {
         .doc(uid)
         .snapshots()
         .map(
-          (event) => UserInfoDataModel.fromJson(
-            {
-              ...event.data()!,
-              'uid': event.id,
-            },
-          ),
+          (event) =>
+              UserInfoDataModel.fromJson({...event.data()!, 'uid': event.id}),
         );
   }
 
-
   @override
   Future<List<UserInfoDataModel>> searchUsers() {
-    return databaseDataSource
-        .collection(
-          CollectionsName.users.name,
-        )
-        .get()
-        .then(
+    return databaseDataSource.collection(CollectionsName.users.name).get().then(
       (value) {
         return value.docs
-            .map(
-              (e) => UserInfoDataModel.fromJson(
-                {
-                  ...e.data(),
-                  'uid': e.id,
-                },
-              ),
-            )
+            .map((e) => UserInfoDataModel.fromJson({...e.data(), 'uid': e.id}))
             .toList();
       },
     );
   }
-
 
   @override
   Future<void> editUserProfile({
@@ -82,13 +58,7 @@ class _UserRemoteDataSource implements UserRepository {
     return databaseDataSource
         .collection(CollectionsName.users.name)
         .doc(uid)
-        .update(
-      {
-        'firstName': firstName,
-        'lastName': lastName,
-        'bio': bio,
-      },
-    );
+        .update({'firstName': firstName, 'lastName': lastName, 'bio': bio});
   }
 
   @override
@@ -96,11 +66,7 @@ class _UserRemoteDataSource implements UserRepository {
     return databaseDataSource
         .collection(CollectionsName.users.name)
         .doc(uid)
-        .update(
-      {
-        'photoUrl': photoUrl,
-      },
-    );
+        .update({'photoUrl': photoUrl});
   }
 
   @override
@@ -108,29 +74,26 @@ class _UserRemoteDataSource implements UserRepository {
     return databaseDataSource
         .collection(CollectionsName.users.name)
         .doc(uid)
-        .update(
-      {
-        'coverImageUrl': coverImageUrl,
-      },
-    );
+        .update({'coverImageUrl': coverImageUrl});
   }
 
   @override
   Future<void> updateUserDeviceToken(String uid, String token) {
     final ref = databaseDataSource
-        .collection(
-          CollectionsName.users.name,
-        )
-        .doc(
-          uid,
-        );
+        .collection(CollectionsName.users.name)
+        .doc(uid);
 
-    return ref.set(
-      {
-        'deviceTokens': FieldValue.arrayUnion([token]),
-      },
-      SetOptions(merge: true),
-    );
+    return ref.set({
+      'deviceTokens': FieldValue.arrayUnion([token]),
+    }, SetOptions(merge: true));
+  }
+
+  @override
+  Future<void> updateUserRole({required String uid, required String role}) {
+    return databaseDataSource
+        .collection(CollectionsName.users.name)
+        .doc(uid)
+        .update({'role': role});
   }
 }
 

@@ -12,6 +12,7 @@ CurrentUserDataModel _$CurrentUserDataModelFromJson(
   uid: json['uid'] as String,
   email: json['email'] as String?,
   displayName: json['displayName'] as String?,
+  role: json['role'] as String?,
 );
 
 Map<String, dynamic> _$CurrentUserDataModelToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$CurrentUserDataModelToJson(
   'uid': instance.uid,
   'email': instance.email,
   'displayName': instance.displayName,
+  'role': instance.role,
 };

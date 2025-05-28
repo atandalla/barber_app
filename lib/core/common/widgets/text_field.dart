@@ -20,8 +20,11 @@ class AppTextFormField extends StatelessWidget {
       controller: fieldController,
       obscureText: obscureText,
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      style: const TextStyle(fontSize: 14.0),
+
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: const TextStyle(fontSize: 14.0),
         border: const OutlineInputBorder(),
       ),
       validator: fieldValidator,

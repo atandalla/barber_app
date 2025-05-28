@@ -20,7 +20,7 @@ class HighlightButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Text(text),
+      child: Text(text, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
     );
   }
 }

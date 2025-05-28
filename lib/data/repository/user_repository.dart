@@ -88,6 +88,11 @@ class _UserRepository implements UserRepository {
       coverImageUrl: coverImageUrl,
     );
   }
+  
+  @override
+  Future<void> updateUserRole({required String uid, required String role}) {
+    return databaseDataSource.updateUserRole(uid: uid, role: role);
+  }
 }
 
 final userRepositoryProvider = Provider<UserRepository>(

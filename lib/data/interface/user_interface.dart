@@ -21,4 +21,9 @@ abstract interface class UserRepository {
     required String uid,
     String? coverImageUrl,
   });
+  
+  Future<void> updateUserRole({
+    required String uid,
+    required String role,
+  });
 }

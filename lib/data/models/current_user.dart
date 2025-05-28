@@ -9,17 +9,20 @@ class CurrentUserDataModel {
     required this.uid,
     this.email,
     this.displayName,
+    this.role,
   });
 
   final String uid;
   final String? email;
   final String? displayName;
+  final String? role;
 
   factory CurrentUserDataModel.fromFirebaseUser(User user) {
     return CurrentUserDataModel(
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
+      role: 'user',
     );
   }
 

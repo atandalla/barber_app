@@ -6,8 +6,8 @@ class WelcomeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Bienvenido a EcuaRed !',
-      style: Theme.of(context).textTheme.headlineSmall,
+      'Bienvenido a Barber Shop',
+      style: Theme.of(context).textTheme.titleLarge,
     );
   }
 }

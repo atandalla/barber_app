@@ -1,8 +1,11 @@
 enum RouterNames {
   splashScreen,
+  welcomePage,
   loginPage,
   registerPage,
   roleSelectionPage,
+  homePage,
+  adminPage,
 
   forgotPasswordPage,
   feedPage,
